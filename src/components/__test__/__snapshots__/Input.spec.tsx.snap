@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Input /> matches snapshot 1`] = `
+<body>
+  <div>
+    <div
+      class="columns"
+    >
+      <div
+        class="column is-fullhd"
+      >
+        <p
+          class="control has-icons-left"
+        >
+          <input
+            aria-label="test-input"
+            class="input is-rounded"
+            placeholder="Enter Command"
+            type="text"
+          />
+          <span
+            class="icon is-small is-left"
+          >
+            <i
+              class="icon"
+            />
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+`;
