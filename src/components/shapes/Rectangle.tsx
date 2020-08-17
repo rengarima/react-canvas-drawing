@@ -1,47 +1,18 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {ShapeProps} from "../../types/ShapeProps";
 import {Shape} from "./Shape";
-import global from "../../store/global";
+import global, {dummyShape} from "../../store/global";
+import {getRectangleAsLines} from "../../utils/utils";
 
 export const Rectangle = (props: ShapeProps) => {
 
-    const shapes = [
-        {
-            startX: props.startX,
-            startY: props.startY,
-            endX: props.endX,
-            endY: props.startY,
-            shape: "Line"
-        },
-
-        {
-            startX: props.startX,
-            startY: props.startY,
-            endX: props.startX,
-            endY: props.endY,
-            shape: "Line"
-        },
-
-        {
-            startX: props.endX,
-            startY: props.startY,
-            endX: props.endX,
-            endY: props.endY,
-            shape: "Line"
-        },
-
-        {
-            startX: props.startX,
-            startY: props.endY,
-            endX: props.endX,
-            endY: props.endY,
-            shape: "Line"
-        },
-    ]
+    const [shapes, setShapes] = useState([dummyShape]);
 
     useEffect(() =>{
-         //@ts-ignore
-        props.startX && shapes.map(shape => global.canvas.addShape(shape));
+        const tempShapes = getRectangleAsLines(props);
+        setShapes(tempShapes);
+        //@ts-ignore
+        props.startX && tempShapes.map(shape => global.canvas.addShape(shape));
     }, [props.startX, props.startY, props.endX, props.endY]);
 
     return <Shape shapes={shapes} />

@@ -1,5 +1,13 @@
-import { render, fireEvent, RenderResult } from '@testing-library/react';
-import {beyondCanvasRange, doesCanvasExist, isNumberOfPropsCorrect, isValidFormat, readCommand} from "../utils";
+
+import {
+    beyondCanvasRange,
+    doesCanvasExist,
+    getRectangleAsLines,
+    isNumberOfPropsCorrect,
+    isValidFormat,
+    readCommand
+} from "../utils";
+import {ShapeProps} from "../../types/ShapeProps";
 
 describe("Utils", () => {
 
@@ -35,5 +43,20 @@ describe("Utils", () => {
         expect(beyondCanvasRange(2,1,{width:1, height:2})).toBeFalsy();
         expect(beyondCanvasRange(10,10,{width:1, height:2})).toBeTruthy();
         expect(beyondCanvasRange(10,10,null)).toBeTruthy();
+    });
+
+    it("should return 4 sets of line as rectangle ", () => {
+        const shape: ShapeProps = {startX:2, startY:3, endX:4, endY:6, shape:"Rectangle"};
+        const expected:ShapeProps[] =[
+            {startX:2, startY:3, endX:4, endY:3, shape:"Line"},
+            {startX:2, startY:3, endX:2, endY:6, shape:"Line"},
+            {startX:4, startY:3, endX:4, endY:6, shape:"Line"},
+            {startX:2, startY:6, endX:4, endY:6, shape:"Line"},
+        ];
+
+        const calculated = getRectangleAsLines(shape);
+        expect(calculated).toBeDefined();
+        expect(calculated.length).toEqual(4);
+        expect(calculated).toEqual(expected);
     });
 });

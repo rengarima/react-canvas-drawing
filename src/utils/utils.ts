@@ -1,3 +1,5 @@
+import {ShapeProps} from "../types/ShapeProps";
+
 export const envVar = {
     horizontalStyle: process.env.REACT_APP_HORIZONTAL_STYLE || "-",
     verticalStyle: process.env.REACT_APP_VERTICAL_STYLE || "|",
@@ -29,6 +31,49 @@ export const doesCanvasExist =
 
 export const beyondCanvasRange =
     (x: number, y:number, canvas: any): boolean => {
-        return canvas? x > canvas.width &&
-            y > canvas.height: true;
+        return canvas ? x > canvas.width &&
+            y > canvas.height : true;
     }
+
+
+    export  const getRectangleAsLines =
+        (props:ShapeProps) :ShapeProps[] => {
+    if(props){
+        const shapes: ShapeProps[] = [
+            {
+                startX: props.startX,
+                startY: props.startY,
+                endX: props.endX,
+                endY: props.startY,
+                shape: "Line"
+            },
+
+            {
+                startX: props.startX,
+                startY: props.startY,
+                endX: props.startX,
+                endY: props.endY,
+                shape: "Line"
+            },
+
+            {
+                startX: props.endX,
+                startY: props.startY,
+                endX: props.endX,
+                endY: props.endY,
+                shape: "Line"
+            },
+
+            {
+                startX: props.startX,
+                startY: props.endY,
+                endX: props.endX,
+                endY: props.endY,
+                shape: "Line"
+            },
+        ];
+        return shapes;
+
+    }
+    return [];
+}
