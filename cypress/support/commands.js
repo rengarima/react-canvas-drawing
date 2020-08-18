@@ -37,11 +37,10 @@ Cypress.Commands.add('checkCanvas', (borderWidth, borderHeight, canvasBody) => {
             cy.get('tbody > :nth-child('+height+') > :nth-child(1)').should("exist")
             cy.get('tbody > :nth-child('+height+') > :nth-child(1)').contains("|")
 
-            if(width != 1 && width <= borderWidth-2){
-                console.log(height + " " + width  + " " + canvasBody[height-1][width])
+            if(width != 1 && width < borderWidth-1){
                 cy.get('tbody > :nth-child('+height+') > :nth-child('+width+')').exist
-                if(canvasBody[height-1][width])
-                    cy.get('tbody > :nth-child('+height+') > :nth-child('+width+')').contains( canvasBody[height-1][width])
+                if(canvasBody[height-1][width-2])
+                    cy.get('tbody > :nth-child('+height+') > :nth-child('+width+')').contains( canvasBody[height-1][width-2])
             }
 
             //canvasEdges end
