@@ -22,7 +22,7 @@ export default function CommandsFactory (
     props : CommandType
     ): JSX.Element {
     const commands = {
-        C : CanvasCommand,
+        C: CanvasCommand,
         L: LineCommand,
         R: RectangleCommand,
         Q: ClearCommand,
@@ -33,7 +33,7 @@ export default function CommandsFactory (
         return <InvalidCommand error={"Invalid Input Format"} />;
     }
     const cmdType = props.command[0] + "";
-    // @ts-ignore :TODO: Fix Type
+    // @ts-ignore
     return (commands[cmdType] || commands.default)(props)
 }
 

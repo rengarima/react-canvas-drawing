@@ -1,3 +1,4 @@
+//@ts-nocheck
 import {act, renderHook} from "@testing-library/react-hooks";
 import useStore from "../useStore";
 import {dummyFill, dummyShape} from "../../store/global";

@@ -7,6 +7,9 @@
       "dom.iterable",
       "esnext"
     ],
+    "types": [
+      "cypress"
+    ],
     "noFallthroughCasesInSwitch": true,
     "allowJs": true,
     "skipLibCheck": true,

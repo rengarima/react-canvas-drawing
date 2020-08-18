@@ -25,6 +25,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 - Bulma.io - CSS Framework
 - Global State (./store/global.ts & ./hooks/.useStore ) - A simplest form of sharing state with other components and hooks - decided against other implementation ( useContext/persisted state) for now. 
 - Flood fill Algo from [here](https://hackernoon.com/flood-fill-algorithm-with-recursive-function-sex3uvz)
+- Custom "useCanvas" hook is the heart of the drawing tool -
 
 ### Overview
 You're given the task of writing a simple console version of a drawing program. 
