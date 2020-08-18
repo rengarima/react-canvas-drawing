@@ -1,6 +1,55 @@
 import {useEffect, useState} from "react";
 import {FillProps} from "../types/FillProps";
-import {envVar} from "../utils/utils";
+import {beyondCanvasRange, envVar} from "../utils/utils";
+
+const drawLine =
+    (x: number, y: number, x2: number, y2: number, canvasBody:any ): any =>{
+        // horizontal line
+        if (x === x2) {
+            for (let i = y - 1; i <= y2 - 1; i++) {
+                canvasBody[x - 1] && canvasBody[x - 1].splice(i, 1, envVar.lineGlyph);
+
+            }
+        }
+        //vertical Line
+        if (y === y2) {
+            for (let i = x - 1; i <= x2 - 1; i++) {
+                canvasBody[i] && canvasBody[i].splice(y - 1, 1, "x");
+
+            }
+        }
+}
+
+const floodFill = (x:number,
+                   y:number,
+                   prevColor: string,
+                   newColor: string,  canvasBody: any
+                   , width: number, height: number): void => {
+    //do nothing
+    if(beyondCanvasRange(x+1,y+1, {width, height}))           //Base Case
+        return;
+    if(!canvasBody[x]){
+        return;
+    }
+
+    if(canvasBody[x][y] !== prevColor)
+        return;
+    if(canvasBody[x][y] === newColor)
+        return;
+    if(canvasBody[x][y] === prevColor){
+        canvasBody[x] && canvasBody[x].splice(y, 1 ,newColor);             //Converting the previous color into new colo
+    }
+
+    floodFill(x-1,y,prevColor,newColor, canvasBody, width, height);
+    floodFill(x+1,y,prevColor,newColor, canvasBody, width, height);
+    floodFill(x,y-1,prevColor,newColor, canvasBody, width, height);
+    floodFill(x,y+1,prevColor,newColor, canvasBody, width, height);
+    floodFill(x-1,y-1,prevColor,newColor, canvasBody, width, height);
+    floodFill(x-1,y+1,prevColor,newColor, canvasBody, width, height);
+    floodFill(x+1,y-1,prevColor,newColor, canvasBody, width, height);
+    floodFill(x+1,y+1,prevColor,newColor, canvasBody, width, height);
+
+}
 
 export default function useCanvas (width: number, height:number) {
 
@@ -16,20 +65,7 @@ export default function useCanvas (width: number, height:number) {
             //@ts-ignore
             shapes.map(shape => {
                 if(shape.startX > 0 && shape.shape) {
-                    //horizontal Line
-                    if (shape.startX === shape.endX) {
-                        for (let i = shape.startY - 1; i <= shape.endY - 1; i++) {
-                            canvasBody[shape.startX - 1] && canvasBody[shape.startX - 1].splice(i, 1, envVar.lineGlyph);
-
-                        }
-                    }
-                    //vertical Line
-                    if (shape.startY === shape.endY) {
-                        for (let i = shape.startX - 1; i <= shape.endX - 1; i++) {
-                            canvasBody[i] && canvasBody[i].splice(shape.startY - 1, 1, "x");
-
-                        }
-                    }
+                    drawLine(shape.startX, shape.startY, shape.endX, shape.endY, canvasBody);
                 }
             })
         }
@@ -41,49 +77,11 @@ export default function useCanvas (width: number, height:number) {
             });
         }
         console.table(canvasBody);
-
     }
 
-    const valid = (x: number, y: number) : boolean =>
-    {
-        if(x<=0 || x>=width || y<=0 || y>=height)
-            return false;
-        else
-            return true;
-    }
-
-    const floodFill = (x:number,
-                       y:number,
-                       prevColor: string,
-                       newColor: string): void => {
-        //do nothing
-        if(valid(x,y))           //Base Case
-            return;
-        if(!canvasBody[x]){
-            return;
-        }
-
-        if(canvasBody[x][y] !== prevColor)
-            return;
-        if(canvasBody[x][y] === newColor)
-            return;
-        if(canvasBody[x][y] === prevColor){
-            canvasBody[x] && canvasBody[x].splice(y, 1 ,newColor);             //Converting the previous color into new colo
-        }
-
-        floodFill(x-1,y,prevColor,newColor);
-        floodFill(x+1,y,prevColor,newColor);
-        floodFill(x,y-1,prevColor,newColor);
-        floodFill(x,y+1,prevColor,newColor);
-        floodFill(x-1,y-1,prevColor,newColor);
-        floodFill(x-1,y+1,prevColor,newColor);
-        floodFill(x+1,y-1,prevColor,newColor);
-        floodFill(x+1,y+1,prevColor,newColor);
-
-    }
 
     const fillCanvas = ({fromX, fromY, color}:FillProps) =>{
-        canvasBody && floodFill(fromY-1, fromX-1, " ", color);
+        canvasBody && floodFill(fromY-1, fromX-1, " ", color, canvasBody, width, height);
     }
 
     useEffect(() =>{

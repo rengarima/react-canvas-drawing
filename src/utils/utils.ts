@@ -31,8 +31,9 @@ export const doesCanvasExist =
 
 export const beyondCanvasRange =
     (x: number, y:number, canvas: any): boolean => {
-        return canvas ? x > canvas.width &&
-            y > canvas.height : true;
+        return canvas ? (x > canvas.height ||
+            y > canvas.width || x<=0 || y<=0
+            ): false;
     }
 
 

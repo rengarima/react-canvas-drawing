@@ -104,10 +104,7 @@ enter command: Q
 
 ### Pending Items
 - Invalid is not rendering canvas
-- fill not rendering few spots
-- Refactor
- -  IF conditions
- - draw move out
+- If Number of props are less than desired than throwing error
 
 
 
