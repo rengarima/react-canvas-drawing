@@ -65,18 +65,18 @@ export default function useCanvas (width: number, height:number) {
             //@ts-ignore
             shapes.map(shape => {
                 if(shape.startX > 0 && shape.shape) {
-                    drawLine(shape.startX, shape.startY, shape.endX, shape.endY, canvasBody);
+                    return drawLine(shape.startX, shape.startY, shape.endX, shape.endY, canvasBody);
                 }
+                return canvasBody;
             })
         }
 
         if( canvasBody && fillValues ) {
             //@ts-ignore
             fillValues.map(fillProps => {
-                fillCanvas(fillProps);
+                return fillCanvas(fillProps);
             });
         }
-        //console.table(canvasBody);
     }
 
 

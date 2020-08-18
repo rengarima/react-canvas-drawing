@@ -1,5 +1,6 @@
 import {ShapeProps} from "../types/ShapeProps";
 import {FillProps} from "../types/FillProps";
+import {CanvasStoreProps} from "../types/CanvasProps";
 
 export const dummyShape: ShapeProps =
 {
@@ -16,12 +17,13 @@ export const dummyFill: FillProps =
         color: ""
     };
 
-export default {
+const canvasStore: CanvasStoreProps = {
     canvas: {
         width: 0,
         height: 0,
         shapes: [dummyShape],
         fillValues: [dummyFill]
-
     },
 };
+
+export default canvasStore;
