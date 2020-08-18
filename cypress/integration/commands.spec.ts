@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
-import '@testing-library/jest-dom';
 
+//@ts-ignore
 context('Actions', () => {
     beforeEach(() => {
         cy.visit("http://localhost:3000")

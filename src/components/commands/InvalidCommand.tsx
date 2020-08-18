@@ -6,7 +6,6 @@ import {Canvas} from "../shapes/Canvas";
 export const InvalidCommand = (props: any): JSX.Element => {
 
     useEffect(() => {
-        //@ts-ignore
         global.canvas.addShape && global.canvas.addShape(dummyShape);
     },[props.error])
 

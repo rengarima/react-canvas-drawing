@@ -30,7 +30,6 @@ export const CanvasCommand = (props: CommandType): JSX.Element => {
         }
         else{
             setBorder({width:width, height: height})
-            //@ts-ignore
             global.canvas.setBorder && global.canvas.setBorder(width, height);
         }
     },[props]);

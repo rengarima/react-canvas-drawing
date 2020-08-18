@@ -9,7 +9,6 @@ import {FillCommand} from "./FillCommand";
 import global from "../../store/global";
 
 const ClearCommand = (): JSX.Element => {
-    //@ts-ignore
     global.canvas.reset();
     return ( <div> Clear</div> );
 }
