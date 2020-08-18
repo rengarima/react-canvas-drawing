@@ -20,7 +20,9 @@ export const InvalidCommand = (props: any): JSX.Element => {
                 }
             </div>
             <div>
-                <p className="is-danger">
+                <p  style={{
+                    color: 'orange',
+                }}>
                     ERROR: {props.error}
                 </p>
             </div>

@@ -10,6 +10,9 @@ yarn start
 ````
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
+### Demo
+![Drawing Tool Demo](public/demo.gif)
+
 ### Deviations
 - A slightly different approach to "console" output - I wanted to use React and instead of console drawing, the drawing tool is on the browser. However, it still has input and output as "Command Like"
 - Q (or clear button) will clear the drawing board instead of quitting the program.
