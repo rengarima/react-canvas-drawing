@@ -21,7 +21,6 @@ context('Actions', () => {
             ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]]
 
         // @ts-ignore
-        cy.checkCanvas(22, 4, expected);
     })
 
     it('should render lines', () => {
