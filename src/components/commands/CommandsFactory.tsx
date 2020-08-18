@@ -14,6 +14,10 @@ const ClearCommand = (): JSX.Element => {
     return ( <div> Clear</div> );
 }
 
+const InvalidCommandWithError = (props: CommandType): JSX.Element => {
+    return <InvalidCommand error={"Command Doesnt Exist"} />;
+}
+
 export default function CommandsFactory (
     props : CommandType
     ): JSX.Element {
@@ -23,7 +27,7 @@ export default function CommandsFactory (
         R: RectangleCommand,
         Q: ClearCommand,
         B: FillCommand,
-        default : InvalidCommand
+        default : InvalidCommandWithError
     };
     if(!isValidFormat(props.command)){
         return <InvalidCommand error={"Command Doesnt Exist"} />;

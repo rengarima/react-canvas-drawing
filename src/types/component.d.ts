@@ -1,7 +1,7 @@
 
 export interface CommandType {
-    command: string[]
-
+    command: string[],
+    error?: string
 }
 export interface Logs {
     logs: {command: string} [];

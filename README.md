@@ -102,9 +102,5 @@ enter command: B 10 3 o
 enter command: Q
 ````
 
-### Pending Items
-- Invalid is not rendering canvas
-- If Number of props are less than desired than throwing error
-
 
 
