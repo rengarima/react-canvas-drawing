@@ -29,11 +29,20 @@ export const doesCanvasExist =
             canvas.height >0: false;
 }
 
+/**
+ * assumes that the x y are coordinates starting from 0 and
+ * width and height starts from 1
+ * Compares height against x
+ * Compares weight against y
+ * @param x
+ * @param y
+ * @param canvas
+ */
 export const beyondCanvasRange =
     (x: number, y:number, canvas: any): boolean => {
         return canvas ? (x > canvas.height ||
             y > canvas.width || x<=0 || y<=0
-            ): false;
+            ): true;
     }
 
 

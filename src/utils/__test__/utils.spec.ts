@@ -40,8 +40,10 @@ describe("Utils", () => {
 
     it("should verify if coordinates are withing canvas ", () => {
         expect(beyondCanvasRange(1,1,{width:1, height:2})).toBeFalsy();
-        expect(beyondCanvasRange(2,1,{width:1, height:2})).toBeFalsy();
+        expect(beyondCanvasRange(3,1,{width:1, height:3})).toBeFalsy();
         expect(beyondCanvasRange(10,10,{width:1, height:2})).toBeTruthy();
+        expect(beyondCanvasRange(20,11,{width:10, height:20})).toBeTruthy();
+        expect(beyondCanvasRange(21,10,{width:10, height:20})).toBeTruthy();
         expect(beyondCanvasRange(10,10,null)).toBeTruthy();
     });
 
