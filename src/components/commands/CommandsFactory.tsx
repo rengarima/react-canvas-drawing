@@ -30,7 +30,7 @@ export default function CommandsFactory (
         default : InvalidCommandWithError
     };
     if(!isValidFormat(props.command)){
-        return <InvalidCommand error={"Command Doesnt Exist"} />;
+        return <InvalidCommand error={"Invalid Input Format"} />;
     }
     const cmdType = props.command[0] + "";
     // @ts-ignore :TODO: Fix Type

@@ -20,7 +20,7 @@ export const RectangleCommand = (props: CommandType): JSX.Element => {
         setError("");
 
         if (!isNumberOfPropsCorrect(props.command, 5)) {
-            setError("Invalid Command line");
+            setError("Invalid Command : Try R x y x2 y2");
         }
         if (!doesCanvasExist(global.canvas)) {
             setError("Canvas Doesnt exist");

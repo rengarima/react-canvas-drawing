@@ -13,7 +13,7 @@ export const FillCommand = (props: CommandType): JSX.Element => {
         setError("");
 
         if (!isNumberOfPropsCorrect(props.command, 4)) {
-            setError("Invalid Command : ( Try: F x y c)");
+            setError("Invalid Command : ( Try: F x y color)");
         }
         if (!doesCanvasExist(global.canvas)) {
             setError("Canvas Doesnt exist");
