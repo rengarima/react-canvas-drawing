@@ -58,8 +58,8 @@ Q               Should quit the program.
 - Using Cypress.io for E2E tests 
 - `yarn test` - Runs all tests
 - `yarn test -u` - Runs all tests and  updates snapshots
-- `yarn e2e` - Runs all e2e tests
-- `yarn cypress:open` - Runs e2e tests in watch mode
+- `yarn e2e` - Runs all e2e tests on localhost; `yarn start` to start the host
+- `yarn cypress:open` - Runs e2e tests in watch mode on localhost; `yarn start` to start the host
 
 
 ### Acceptance Criteria

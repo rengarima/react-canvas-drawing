@@ -7,7 +7,7 @@ export const InvalidCommand = (props: any): JSX.Element => {
 
     useEffect(() => {
         //@ts-ignore
-        global.canvas.addShape(dummyShape);
+        global.canvas.addShape && global.canvas.addShape(dummyShape);
     },[props.error])
 
     return (
@@ -20,7 +20,7 @@ export const InvalidCommand = (props: any): JSX.Element => {
                 }
             </div>
             <div>
-                <p  style={{
+                <p  aria-label={"error"} style={{
                     color: 'orange',
                 }}>
                     ERROR: {props.error}

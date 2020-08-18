@@ -35,7 +35,7 @@ export const LineCommand = (props: CommandType): JSX.Element => {
         }
         if(beyondCanvasRange(startX, startY, global.canvas) ||
             beyondCanvasRange(endX, endY, global.canvas) ){
-            setError(`Beyond Canvas Range:  ${global.canvas.width} x ${global.canvas.height} `);
+            setError(`Beyond Canvas Range:  ${global.canvas.width} x ${global.canvas.height}`);
         }else {
             setCoordinates({
                 startX, startY,endX,endY,

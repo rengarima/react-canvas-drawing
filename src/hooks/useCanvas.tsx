@@ -76,7 +76,7 @@ export default function useCanvas (width: number, height:number) {
                 fillCanvas(fillProps);
             });
         }
-        console.table(canvasBody);
+        //console.table(canvasBody);
     }
 
 
