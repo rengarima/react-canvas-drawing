@@ -5,6 +5,7 @@ A simple Canvas Drawing Tool, with Console like output.
 ### Setup 
 ````
 git clone https://github.com/rengarima/react-canvas-drawing.git
+cd react-canvas-drawing
 yarn install
 yarn start
 ````

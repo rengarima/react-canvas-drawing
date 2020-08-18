@@ -1,8 +1,9 @@
-//@ts-nocheck
+
 import {render, RenderResult} from "@testing-library/react";
 import React from "react";
 import {LineCommand} from "../LineCommand";
 import {DrawingBoard} from "../../../screens/DrawingBoard";
+import '@testing-library/jest-dom';
 
 let documentBody: RenderResult;
 describe("LineCommand", () => {

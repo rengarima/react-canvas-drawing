@@ -25,7 +25,8 @@
     "jsx": "react"
   },
   "include": [
-    "src"
+    "src",
+    "node_modules/jest-dom"
   ],
   "exclude": [ "node_modules",
     "**/*.spec.ts*",

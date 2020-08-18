@@ -1,7 +1,7 @@
 import React from 'react';
-import { render, fireEvent, RenderResult } from '@testing-library/react';
-import {Input} from '../Input';
+import { render, RenderResult } from '@testing-library/react';
 import {CommandLogs} from "../CommandLogs";
+import '@testing-library/jest-dom';
 
 let documentBody: RenderResult;
 describe('<CommandLogs />', () => {

@@ -1,8 +1,9 @@
-//@ts-nocheck
+
 import {render, RenderResult} from "@testing-library/react";
 import React from "react";
 import {CanvasCommand} from "../CanvasCommand";
 import {envVar} from "../../../utils/utils";
+import '@testing-library/jest-dom';
 
 let documentBody: RenderResult;
 

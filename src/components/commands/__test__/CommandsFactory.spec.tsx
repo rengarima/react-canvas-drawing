@@ -1,7 +1,8 @@
-//@ts-nocheck
+
 import {render, RenderResult} from "@testing-library/react";
 import CommandsFactory from "../CommandsFactory";
 import React from "react";
+import '@testing-library/jest-dom';
 
 let documentBody: RenderResult;
 

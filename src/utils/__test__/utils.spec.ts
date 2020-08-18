@@ -1,4 +1,4 @@
-//@ts-nocheck
+
 import {
     beyondCanvasRange,
     doesCanvasExist,
@@ -8,6 +8,7 @@ import {
     readCommand
 } from "../utils";
 import {ShapeProps} from "../../types/ShapeProps";
+import '@testing-library/jest-dom';
 
 describe("Utils", () => {
 

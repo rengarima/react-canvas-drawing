@@ -1,9 +1,10 @@
-//@ts-nocheck
+
 import {act, renderHook} from "@testing-library/react-hooks";
 import useCanvas from "../useCanvas";
 import {dummyFill} from "../../store/global";
 import {getRectangleAsLines} from "../../utils/utils";
 import {ShapeProps} from "../../types/ShapeProps";
+import '@testing-library/jest-dom';
 
 //FIXME: coordinates are swapped in canvas
 const shape1 = {startX: 2, startY: 1, endX: 2, endY: 6, shape:"Line"};

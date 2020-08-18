@@ -1,4 +1,4 @@
-//@ts-nocheck
+
 import React, {useEffect} from "react";
 import {CanvasProps} from "../../types/CanvasProps";
 import useCanvas from "../../hooks/useCanvas";
@@ -30,8 +30,8 @@ export const Canvas = ({width, height, shapes, fill}: CanvasProps) => {
                 </thead>
                 <tbody>
                 {
-                    canvasBody.map((columns, i) => {
-                        var row = columns.map((value, j) => {
+                    canvasBody.map((columns: any, i: number) => {
+                        var row = columns.map((value: any, j: number) => {
                             return <td key={j}>{value}</td>
                         });
 

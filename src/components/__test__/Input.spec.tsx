@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, fireEvent, RenderResult } from '@testing-library/react';
 import {Input} from '../Input';
+import '@testing-library/jest-dom';
 
 let documentBody: RenderResult;
 describe('<Input />', () => {

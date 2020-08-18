@@ -1,7 +1,6 @@
 /// <reference types="cypress" />
 import "../support/commands";
 
-// @ts-ignore
 context('Actions', () => {
     beforeEach(() => {
         cy.visit("http://localhost:3000")
