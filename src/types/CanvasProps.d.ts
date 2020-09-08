@@ -1,4 +1,5 @@
 import {ShapeProps} from "./ShapeProps";
+import {FillProps} from "./FillProps";
 
 export interface CanvasProps {
     width: number;
@@ -6,6 +7,8 @@ export interface CanvasProps {
     draw?: any;
     shapes?: ShapeProps[];
     fill?: FillProps;
+    removeShapes?: ShapeProps[];
+    removeFill?: FillProps;
 }
 
 
@@ -19,5 +22,7 @@ export interface CanvasStoreProps {
         addShape?: func;
         reset?: func;
         setBorder?: func;
+        removeShape?: func,
+        removeFill?: func
     }
 }

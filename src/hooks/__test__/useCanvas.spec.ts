@@ -87,5 +87,40 @@ describe("useCanvas", () => {
         );
     });
 
+    it("should verify credit suisse test case with one undo", () => {
+        const {result} = renderHook(() => useCanvas(20,4));
+        const {drawShapes}: any = result.current;
+        const shape3 = getRectangleAsLines(rectangle);
+        act(() => drawShapes([shape1, shape2, ...shape3], [fill]));
+        act(() => drawShapes([shape1, shape2], [fill], shape3));
+        let { canvasBody }: any = result.current;
+        expect(canvasBody).toEqual(
+            [
+                [".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", " ", " ", " ", " ", " ", ".", "."],
+                ["x", "x", "x", "x", "x", "x", ".", ".", ".", ".", ".", ".", ".", " ", " ", " ", " ", " ", ".", "."],
+                [" ", " ", " ", " ", " ", "x", ".", ".", ".", ".", ".", ".", ".", " ", " ", " ", " ", " ", ".", "."],
+                [" ", " ", " ", " ", " ", "x", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", "."]]
+        );
+
+    });
+
+    it("should verify credit suisse test case with two undo", () => {
+        const {result} = renderHook(() => useCanvas(20,4));
+        const {drawShapes}: any = result.current;
+        const shape3 = getRectangleAsLines(rectangle);
+        act(() => drawShapes([shape1, shape2, ...shape3], [fill]));
+        act(() => drawShapes([shape1, shape2], [fill], shape3));
+        act(() => drawShapes([shape1], [fill], [shape2]));
+        let { canvasBody }: any = result.current;
+        expect(canvasBody).toEqual(
+            [
+                [".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", " ", " ", " ", " ", " ", ".", "."],
+                ["x", "x", "x", "x", "x", "x", ".", ".", ".", ".", ".", ".", ".", " ", " ", " ", " ", " ", ".", "."],
+                [" ", " ", " ", " ", " ", " ", ".", ".", ".", ".", ".", ".", ".", " ", " ", " ", " ", " ", ".", "."],
+                [" ", " ", " ", " ", " ", " ", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", "."]]
+        );
+
+    });
+
 
 });

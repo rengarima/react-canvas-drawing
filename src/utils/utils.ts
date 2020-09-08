@@ -22,6 +22,10 @@ export const isNumberOfPropsCorrect =
     (cmd: string [], requiredInput: number): boolean => {
     return cmd && cmd.length === requiredInput;
 }
+export const isMinNumberOfPropsCorrect =
+    (cmd: string [], requiredInput: number): boolean => {
+        return cmd && cmd.length >= requiredInput;
+    }
 
 export const doesCanvasExist =
     (canvas: any): boolean => {
@@ -55,7 +59,7 @@ export const beyondCanvasRange =
                 startY: props.startY,
                 endX: props.endX,
                 endY: props.startY,
-                shape: "Line"
+                shape: "Rectangle"
             },
 
             {
@@ -63,7 +67,7 @@ export const beyondCanvasRange =
                 startY: props.startY,
                 endX: props.startX,
                 endY: props.endY,
-                shape: "Line"
+                shape: "Rectangle"
             },
 
             {
@@ -71,7 +75,7 @@ export const beyondCanvasRange =
                 startY: props.startY,
                 endX: props.endX,
                 endY: props.endY,
-                shape: "Line"
+                shape: "Rectangle"
             },
 
             {
@@ -79,7 +83,7 @@ export const beyondCanvasRange =
                 startY: props.endY,
                 endX: props.endX,
                 endY: props.endY,
-                shape: "Line"
+                shape: "Rectangle"
             },
         ];
         return shapes;

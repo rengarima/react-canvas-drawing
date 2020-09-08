@@ -10,13 +10,25 @@ export const HomeScreen = () : JSX.Element => {
 
     const updateValue = (value: string) => {
         if (value) {
-            const nextState = produce( (commandLog, draftState ) => {
-                if(!draftState) draftState = commandLog;
-                draftState.push({command: value});
-            });
-            // @ts-ignore
-            setCommandLog(nextState);
-            setCommand( value);
+
+            if(value.startsWith("u") || value.startsWith("U")) {
+                const lastCommand = commandLog? commandLog[commandLog.length - 1]: {command: "Dummy"};
+                const newState = commandLog.slice(0, commandLog.length - 1);
+                setCommand("U " + lastCommand.command);
+                // @ts-ignore
+                setCommandLog(newState);
+            }else{
+                setCommand( value);
+                const nextState = produce( (commandLog, draftState ) => {
+                    if(!draftState) draftState = commandLog;
+                    draftState.push({command: value});
+                });
+                // @ts-ignore
+                setCommandLog(nextState);
+            }
+
+
+
         }
     }
 

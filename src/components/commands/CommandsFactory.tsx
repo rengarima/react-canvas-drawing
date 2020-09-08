@@ -7,6 +7,8 @@ import {LineCommand} from "./LineCommand";
 import {RectangleCommand} from "./RectangleCommand";
 import {FillCommand} from "./FillCommand";
 import global from "../../store/global";
+import {UndoCommand} from "./UndoCommand";
+import {Line} from "../shapes/Line";
 
 const ClearCommand = (): JSX.Element => {
     global.canvas.reset();
@@ -15,6 +17,10 @@ const ClearCommand = (): JSX.Element => {
 
 const InvalidCommandWithError = (props: CommandType): JSX.Element => {
     return <InvalidCommand error={"Command Doesnt Exist"} />;
+}
+
+const UndoCommandCopy = (props: CommandType): JSX.Element => {
+    return <UndoCommand {...props} />;
 }
 
 export default function CommandsFactory (
@@ -26,6 +32,7 @@ export default function CommandsFactory (
         R: RectangleCommand,
         Q: ClearCommand,
         B: FillCommand,
+        U: UndoCommandCopy,
         default : InvalidCommandWithError
     };
     if(!isValidFormat(props.command)){

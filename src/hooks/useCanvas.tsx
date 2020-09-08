@@ -3,18 +3,18 @@ import {FillProps} from "../types/FillProps";
 import {beyondCanvasRange, envVar} from "../utils/utils";
 
 const drawLine =
-    (x: number, y: number, x2: number, y2: number, canvasBody:any ): any =>{
+    (x: number, y: number, x2: number, y2: number, canvasBody:any, glyph: string =envVar.lineGlyph ): any =>{
         // horizontal line
         if (x === x2) {
             for (let i = y - 1; i <= y2 - 1; i++) {
-                canvasBody[x - 1] && canvasBody[x - 1].splice(i, 1, envVar.lineGlyph);
+                canvasBody[x - 1] && canvasBody[x - 1].splice(i, 1, glyph);
 
             }
         }
         //vertical Line
         if (y === y2) {
             for (let i = x - 1; i <= x2 - 1; i++) {
-                canvasBody[i] && canvasBody[i].splice(y - 1, 1, "x");
+                canvasBody[i] && canvasBody[i].splice(y - 1, 1, glyph);
 
             }
         }
@@ -60,12 +60,24 @@ export default function useCanvas (width: number, height:number) {
 
     const [canvasBody, setCanvasBody] = useState();
 
-    const drawShapes = (shapes:any, fillValues: any) => {
+    const drawShapes = (shapes:any, fillValues: any, removeShapes: any, removeFill: any) => {
         if( canvasBody && shapes) {
+            console.log("DRAWING " + JSON.stringify(shapes));
             //@ts-ignore
             shapes.map(shape => {
                 if(shape.startX > 0 && shape.shape) {
                     return drawLine(shape.startX, shape.startY, shape.endX, shape.endY, canvasBody);
+                }
+                return canvasBody;
+            })
+        }
+
+        if( canvasBody && removeShapes) {
+            console.log("Removing shapes for " + JSON.stringify(removeShapes) + " from  current Canvas"  + JSON.stringify(shapes));
+            //@ts-ignore
+            removeShapes.map(shape => {
+                if(shape.startX > 0 && shape.shape) {
+                    return drawLine(shape.startX, shape.startY, shape.endX, shape.endY, canvasBody, " ");
                 }
                 return canvasBody;
             })
@@ -77,6 +89,19 @@ export default function useCanvas (width: number, height:number) {
                 return fillCanvas(fillProps);
             });
         }
+
+        if( canvasBody && removeFill ) {
+            //@ts-ignore
+            removeFill.map(fillProps => {
+                return fillCanvas(fillProps);
+            });
+        }
+
+    }
+
+    const fillBlankCanvasBody = () =>{
+        return  Array(height).fill(0).map(row =>
+            new Array(width).fill(" "));
     }
 
 
@@ -85,9 +110,7 @@ export default function useCanvas (width: number, height:number) {
     }
 
     useEffect(() =>{
-        const canvasBodyTemp = Array(height).fill(0).map(row =>
-            new Array(width).fill(" "));
-        setCanvasBody(canvasBodyTemp);
+        setCanvasBody(fillBlankCanvasBody());
     },[width, height])
 
     return {border, canvasBody, drawShapes}

@@ -9,11 +9,13 @@ export const Rectangle = (props: ShapeProps) => {
     const [shapes, setShapes] = useState([dummyShape]);
 
     useEffect(() =>{
-        const tempShapes = getRectangleAsLines(props);
-        setShapes(tempShapes);
-        //@ts-ignore
-        props.startX && tempShapes.map(shape => global.canvas.addShape(shape));
-    }, [props.startX, props.startY, props.endX, props.endY]);
+        if(props.shape === "Rectangle") {
+            const tempShapes = getRectangleAsLines(props);
+            setShapes(tempShapes);
+            //@ts-ignore
+            props.startX && tempShapes.map(shape => global.canvas.addShape(shape));
+        }
+    }, [props.startX, props.startY, props.endX, props.endY, props.shape]);
 
     return <Shape shapes={shapes} />
 

@@ -3,6 +3,7 @@ import {act, renderHook} from "@testing-library/react-hooks";
 import useStore from "../useStore";
 import {dummyFill, dummyShape} from "../../store/global";
 import '@testing-library/jest-dom';
+import {ShapeProps} from "../../types/ShapeProps";
 
 describe("useStore", () => {
     beforeEach(() => {
@@ -122,6 +123,103 @@ describe("useStore", () => {
         expect(canvas.height).toEqual(0);
         expect(canvas.shapes).toEqual([dummyShape]);
         expect(canvas.fillValues).toEqual([dummyFill]);
+    });
+
+
+    it("should remove a shape", () => {
+        const {result} = renderHook(() => useStore());
+        const tempShape: ShapeProps = {
+            startX: 2,
+            startY: 2,
+            endX: 2,
+            endY: 4,
+            shape: "Line"
+        };
+        act(() => result.current.setBorder(10, 4));
+        act(() => result.current.addShape(tempShape));
+        let canvas = result.current;
+        expect(canvas.shapes.length).toEqual(2);
+        act(() => result.current.removeShape([tempShape]));
+        canvas = result.current;
+        expect(canvas.shapes.length).toEqual(1);
+
+    });
+
+    it("should not remove any shape if doesnt exist ", () => {
+        const {result} = renderHook(() => useStore());
+        act(() => result.current.setBorder(10, 4));
+        act(() => result.current.addShape(
+            {
+                startX: 2,
+                startY: 2,
+                endX: 2,
+                endY: 4,
+                shape: "Line"
+            }
+        ));
+        let canvas = result.current;
+        expect(canvas.shapes.length).toEqual(2);
+        act(() => result.current.removeShape([{
+            startX: 3,
+            startY: 2,
+            endX: 2,
+            endY: 4,
+            shape: "Line"
+        }]));
+        canvas = result.current;
+        expect(canvas.shapes.length).toEqual(2);
+
+    });
+
+    it("should  remove from anywhere ", () => {
+        const {result} = renderHook(() => useStore());
+        act(() => result.current.setBorder(10, 4));
+        act(() => result.current.addShape(
+            {
+                startX: 2,
+                startY: 2,
+                endX: 2,
+                endY: 4,
+                shape: "Line"
+            }
+        ));
+        act(() => result.current.addShape(
+            {
+                startX: 3,
+                startY: 3,
+                endX: 3,
+                endY: 4,
+                shape: "Line"
+            }
+        ));
+        act(() => result.current.addShape(
+            {
+                startX: 2,
+                startY: 4,
+                endX: 4,
+                endY: 4,
+                shape: "Line"
+            }
+        ));
+        let canvas = result.current;
+        expect(canvas.shapes.length).toEqual(4);
+        act(() => result.current.removeShape([{
+            startX: 3,
+            startY: 3,
+            endX: 3,
+            endY: 4,
+            shape: "Line"
+        }]));
+        canvas = result.current;
+        expect(canvas.shapes.length).toEqual(3);
+        expect(canvas.shapes[2]).toEqual({
+            startX: 2,
+            startY: 4,
+            endX: 4,
+            endY: 4,
+            shape: "Line"
+        });
+
     });
 
 });

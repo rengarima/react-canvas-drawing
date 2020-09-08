@@ -28,6 +28,31 @@ export default function useStore() {
         }
     }
 
+    const removeShape = (removeShapes: ShapeProps[] ) => {
+        if (removeShapes) {
+            if (shapes.length > 0 && shapes.length > removeShapes.length) {
+                let nextState = shapes;
+                removeShapes.map(newShape => {
+                    nextState = nextState.filter(tempShape => { return !(newShape.startX === tempShape.startX &&
+                        newShape.startY === tempShape.startY &&
+                        newShape.endX === tempShape.endX &&
+                        newShape.endY === tempShape.endY)} );
+                })
+                //@ts-ignore
+                setShapes(nextState);
+            }
+        }
+
+    }
+
+    const removeFill = () => {
+        if(fillValues.length > 0) {
+            const nextState = fillValues.slice(0, fillValues.length - 1);
+            //@ts-ignore
+            setFillValues(nextState);
+        }
+    }
+
     const addShape = (shape: ShapeProps) => {
         const nextState = produce( (shapes, draftState ) => {
             if(!draftState) draftState = shapes;
@@ -54,6 +79,8 @@ export default function useStore() {
         fillValues,
         setBorder,
         addShape,
+        removeShape,
+        removeFill,
         reset
     };
 }

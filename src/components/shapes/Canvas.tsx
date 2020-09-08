@@ -4,7 +4,7 @@ import {CanvasProps} from "../../types/CanvasProps";
 import useCanvas from "../../hooks/useCanvas";
 import global from "../../store/global";
 
-export const Canvas = ({width, height, shapes, fill}: CanvasProps) => {
+export const Canvas = ({width, height, shapes, fill, removeShapes, removeFill}: CanvasProps) => {
     const {border, canvasBody, drawShapes} = useCanvas(width, height);
     const horizontalBorder = Array(width+2).fill(border.horizontal);
 
@@ -14,8 +14,8 @@ export const Canvas = ({width, height, shapes, fill}: CanvasProps) => {
         });
 
     useEffect(() => {
-        drawShapes(global.canvas.shapes, global.canvas.fillValues);
-    }, [shapes, fill, canvasBody, drawShapes])
+        drawShapes(global.canvas.shapes, global.canvas.fillValues, removeShapes, removeFill);
+    }, [shapes, fill, canvasBody, drawShapes, removeShapes, removeFill])
 
     return (
         <div

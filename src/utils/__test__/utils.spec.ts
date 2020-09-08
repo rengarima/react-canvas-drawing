@@ -51,10 +51,10 @@ describe("Utils", () => {
     it("should return 4 sets of line as rectangle ", () => {
         const shape: ShapeProps = {startX:2, startY:3, endX:4, endY:6, shape:"Rectangle"};
         const expected:ShapeProps[] =[
-            {startX:2, startY:3, endX:4, endY:3, shape:"Line"},
-            {startX:2, startY:3, endX:2, endY:6, shape:"Line"},
-            {startX:4, startY:3, endX:4, endY:6, shape:"Line"},
-            {startX:2, startY:6, endX:4, endY:6, shape:"Line"},
+            {startX:2, startY:3, endX:4, endY:3, shape:"Rectangle"},
+            {startX:2, startY:3, endX:2, endY:6, shape:"Rectangle"},
+            {startX:4, startY:3, endX:4, endY:6, shape:"Rectangle"},
+            {startX:2, startY:6, endX:4, endY:6, shape:"Rectangle"},
         ];
 
         const calculated = getRectangleAsLines(shape);

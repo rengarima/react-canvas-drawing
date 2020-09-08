@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { render, RenderResult } from '@testing-library/react';
 import {CommandLogs} from "../CommandLogs";
 import '@testing-library/jest-dom';
