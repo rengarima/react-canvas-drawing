@@ -171,7 +171,7 @@ describe("useStore", () => {
 
     });
 
-    it("should  remove from anywhere ", () => {
+    it("should  remove shape from anywhere ", () => {
         const {result} = renderHook(() => useStore());
         act(() => result.current.setBorder(10, 4));
         act(() => result.current.addShape(

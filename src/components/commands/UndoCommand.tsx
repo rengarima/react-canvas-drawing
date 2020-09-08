@@ -25,7 +25,7 @@ export const UndoCommand = (props: CommandType): JSX.Element => {
         }else{
             const shape = props.command[1];
 
-            if(shape === "F"){
+            if(shape === "B"){
                 setCoordinates({fromX: Number(props.command[2]),
                     fromY: Number(props.command[3]),
                     color: " ", shape});

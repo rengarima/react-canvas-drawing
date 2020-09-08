@@ -84,6 +84,7 @@ export default function useCanvas (width: number, height:number) {
         }
 
         if( canvasBody && fillValues ) {
+            console.log("FILL FOR " + JSON.stringify(fillValues));
             //@ts-ignore
             fillValues.map(fillProps => {
                 return fillCanvas(fillProps);
@@ -91,10 +92,9 @@ export default function useCanvas (width: number, height:number) {
         }
 
         if( canvasBody && removeFill ) {
+            console.log("REMOVING FILL FOR " + JSON.stringify(removeFill));
             //@ts-ignore
-            removeFill.map(fillProps => {
-                return fillCanvas(fillProps);
-            });
+            return fillCanvas(removeFill);
         }
 
     }

@@ -14,7 +14,7 @@ export const Undo = (props: UndoProps) => {
 
     useEffect(() =>{
 
-        if(props.shape === "F"){
+        if(props.shape === "B"){
              {
                 global.canvas.removeFill && global.canvas.removeFill();
                 setRemoveFill({...props})
@@ -27,7 +27,6 @@ export const Undo = (props: UndoProps) => {
         } else if(props.shape === "L" ||
             props.shape === "R" ){
             {
-
                 let  tempShapes = [];
 
                 if(props.shape === "R")  tempShapes = getRectangleAsLines({ startX: props.fromX, startY: props.fromY,
