@@ -219,7 +219,6 @@ describe("useStore", () => {
             endY: 4,
             shape: "Line"
         });
-
     });
 
 });

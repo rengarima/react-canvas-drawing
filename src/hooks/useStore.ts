@@ -31,7 +31,7 @@ export default function useStore() {
     const removeShape = (removeShapes: ShapeProps[] ) => {
         if (removeShapes) {
             if (shapes.length > 0 && shapes.length > removeShapes.length) {
-                let nextState = shapes;
+                let nextState = Array.from(shapes);
                 removeShapes.map(newShape => {
                     nextState = nextState.filter(tempShape => { return !(newShape.startX === tempShape.startX &&
                         newShape.startY === tempShape.startY &&
@@ -47,6 +47,7 @@ export default function useStore() {
 
     const removeFill = () => {
         if(fillValues.length > 0) {
+            console.log("Removing fill" + fillValues);
             const nextState = fillValues.slice(0, fillValues.length - 1);
             //@ts-ignore
             setFillValues(nextState);

@@ -62,7 +62,6 @@ export default function useCanvas (width: number, height:number) {
 
     const drawShapes = (shapes:any, fillValues: any, removeShapes: any, removeFill: any) => {
         if( canvasBody && shapes) {
-            console.log("DRAWING " + JSON.stringify(shapes));
             //@ts-ignore
             shapes.map(shape => {
                 if(shape.startX > 0 && shape.shape) {
@@ -73,7 +72,6 @@ export default function useCanvas (width: number, height:number) {
         }
 
         if( canvasBody && removeShapes) {
-            console.log("Removing shapes for " + JSON.stringify(removeShapes) + " from  current Canvas"  + JSON.stringify(shapes));
             //@ts-ignore
             removeShapes.map(shape => {
                 if(shape.startX > 0 && shape.shape) {
@@ -84,7 +82,6 @@ export default function useCanvas (width: number, height:number) {
         }
 
         if( canvasBody && fillValues ) {
-            console.log("FILL FOR " + JSON.stringify(fillValues));
             //@ts-ignore
             fillValues.map(fillProps => {
                 return fillCanvas(fillProps);
@@ -92,9 +89,8 @@ export default function useCanvas (width: number, height:number) {
         }
 
         if( canvasBody && removeFill ) {
-            console.log("REMOVING FILL FOR " + JSON.stringify(removeFill));
             //@ts-ignore
-            return fillCanvas(removeFill);
+            return fillCanvas({...removeFill, prvColor: "."});
         }
 
     }
@@ -105,8 +101,9 @@ export default function useCanvas (width: number, height:number) {
     }
 
 
-    const fillCanvas = ({fromX, fromY, color}:FillProps) =>{
-        canvasBody && floodFill(fromY-1, fromX-1, " ", color, canvasBody, width, height);
+    const fillCanvas = ({fromX, fromY, color, prvColor}:FillProps) =>{
+        const prevColor =  prvColor? prvColor : " ";
+        canvasBody && floodFill(fromY-1, fromX-1, prevColor, color, canvasBody, width, height);
     }
 
     useEffect(() =>{
